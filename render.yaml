@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: student-management-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URL
+        value: mongodb+srv://josephanaebonam_db_user:9FzsMmepjnthFPan@joseph.3g8yb3j.mongodb.net/?retryWrites=true&w=majority&appName=Joseph
+      - key: PORT
+        value: 3000
