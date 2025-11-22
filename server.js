@@ -11,8 +11,10 @@ const app = express();
 // CORS configuration
 app.use(
   cors({
-    // origin: ["http://localhost:5173"],
-    origin: ["https://crudapp-student-m-s.netlify.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://student-management-frontend-sand.vercel.app/",
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -28,14 +30,22 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Student Management API is running",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health check endpoint
-// app.get("/api/health", (req, res) => {
-//   res.json({
-//     success: true,
-//     message: "Server is running",
-//     timestamp: new Date().toISOString(),
-//   });
-// });
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Server is running",
+    timestamp: new Date().toISOString(),
+  });
+});
 
 app.use("/api", auth);
 
